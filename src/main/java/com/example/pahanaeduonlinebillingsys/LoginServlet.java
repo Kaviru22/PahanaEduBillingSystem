@@ -18,9 +18,8 @@ public class LoginServlet extends HttpServlet {
         }
 
         try (Connection conn = DBConnection.getConnection()) {
-            PreparedStatement ps = conn.prepareStatement(
-                    "SELECT * FROM users WHERE username = ? AND password = ?"
-            );
+            String selectquery = "SELECT * FROM users WHERE username=? and password=?";
+            PreparedStatement ps = conn.prepareStatement(selectquery);
             ps.setString(1, username);
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
