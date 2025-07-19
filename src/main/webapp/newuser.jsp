@@ -23,6 +23,17 @@
     <div class="card shadow p-4" style="width: 25rem;">
         <h3 class="text-center mb-4">Create New Account</h3>
 
+        <%-- Show success or error messages --%>
+        <% if (request.getAttribute("error") != null) { %>
+        <div class="alert alert-danger" role="alert">
+            <%= request.getAttribute("error") %>
+        </div>
+        <% } else if (request.getAttribute("success") != null) { %>
+        <div class="alert alert-success" role="alert">
+            <%= request.getAttribute("success") %>
+        </div>
+        <% } %>
+
         <form action="newuser" method="post">
             <div class="mb-3">
                 <label for="username" class="form-label">Username:</label>

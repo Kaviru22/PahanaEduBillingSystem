@@ -12,27 +12,21 @@ public class LoginServlet extends HttpServlet {
         String username = req.getParameter("username").trim();
         String password = req.getParameter("password").trim();
 
-        if ("admin".equals(username) && "admin123".equals(password)) {
+        //Hardcoded Admin Check
+        if (username.equals("admin") && password.equals("admin123")) {
+            req.getSession().setAttribute("username", "admin");
             resp.sendRedirect("admin.jsp");
             return;
         }
 
-        try (Connection conn = DBConnection.getConnection()) {
-            String selectquery = "SELECT * FROM users WHERE username=? and password=?";
-            PreparedStatement ps = conn.prepareStatement(selectquery);
-            ps.setString(1, username);
-            ps.setString(2, password);
-            ResultSet rs = ps.executeQuery();
+        UserLogin userLogin = new UserLogin(username, password);
+        LoginService loginService = new LoginService();
 
-            if (rs.next()) {
-                resp.sendRedirect("user.jsp");
-            } else {
-                resp.sendRedirect("login.jsp?error=1");
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            resp.sendRedirect("login.jsp?error=2");
+        if (loginService.validateUser(userLogin)) {
+            req.getSession().setAttribute("username", username);
+            resp.sendRedirect("user.jsp");
+        } else {
+            resp.sendRedirect("login.jsp?error=1");
         }
     }
 }

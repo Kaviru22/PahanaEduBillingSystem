@@ -48,8 +48,10 @@ public class UpdateUser extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
 
+        User newUser = new User(username, firstname, lastname, email, password);
+
         // Email & password validation using Java (basic)
-        if (!email.contains("@") || password.length() < 6) {
+        if (!newUser.getEmail().contains("@") || newUser.getPassword().length() < 6) {
             req.setAttribute("message", "Invalid email or password must be 6+ characters.");
             req.getRequestDispatcher("updateUser.jsp").forward(req, resp);
             return;
@@ -59,11 +61,11 @@ public class UpdateUser extends HttpServlet {
             Connection conn = DBConnection.getConnection();
             String updateSQL = "UPDATE users SET username=?, firstname=?, lastname=?, email=?, password=? WHERE username=?";
             PreparedStatement ps = conn.prepareStatement(updateSQL);
-            ps.setString(1, username);
-            ps.setString(2, firstname);
-            ps.setString(3, lastname);
-            ps.setString(4, email);
-            ps.setString(5, password);
+            ps.setString(1, newUser.getUsername());
+            ps.setString(2, newUser.getFirstName());
+            ps.setString(3, newUser.getLastName());
+            ps.setString(4, newUser.getEmail());
+            ps.setString(5, newUser.getPassword());
             ps.setString(6, originalUsername);
 
             int updated = ps.executeUpdate();

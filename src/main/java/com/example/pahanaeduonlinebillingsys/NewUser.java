@@ -21,8 +21,15 @@ public class NewUser extends HttpServlet {
         String password = req.getParameter("password").trim();
         String confirmPassword = req.getParameter("confirmPassword").trim();
 
-        if (!password.equals(confirmPassword)) {
+        UserRegister userRegister = new UserRegister(username, firstname, lastname, email, password, confirmPassword);
+
+        if (!userRegister.getPassword().equals(userRegister.getConfirmpassword())) {
             req.setAttribute("error", "❌ Passwords do not match!");
+            req.getRequestDispatcher("newuser.jsp").forward(req, resp);
+            return;
+
+        } else if (!userRegister.getEmail().contains("@") || userRegister.getPassword().length() < 6) {
+            req.setAttribute("error", "Invalid email or password must be 6+ characters.");
             req.getRequestDispatcher("newuser.jsp").forward(req, resp);
             return;
         }
@@ -34,8 +41,8 @@ public class NewUser extends HttpServlet {
             // Check if username or email already exists
             String checkQuery = "SELECT * FROM users WHERE username = ? OR email = ?";
             PreparedStatement checkStmt = conn.prepareStatement(checkQuery);
-            checkStmt.setString(1, username);
-            checkStmt.setString(2, email);
+            checkStmt.setString(1, userRegister.getUsername());
+            checkStmt.setString(2, userRegister.getEmail());
             ResultSet rs = checkStmt.executeQuery();
 
             if (rs.next()) {
@@ -46,17 +53,16 @@ public class NewUser extends HttpServlet {
 
             String insertquery = "INSERT INTO users (username, firstname, lastname, email, password) VALUES (?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(insertquery);
-            ps.setString(1, username);
-            ps.setString(2, firstname);
-            ps.setString(3, lastname);
-            ps.setString(4, email);
-            ps.setString(5, password);
+            ps.setString(1, userRegister.getUsername());
+            ps.setString(2, userRegister.getFirstName());
+            ps.setString(3, userRegister.getLastName());
+            ps.setString(4, userRegister.getEmail());
+            ps.setString(5, userRegister.getPassword());
 
             int rows = ps.executeUpdate();
             if (rows > 0) {
                 req.setAttribute("success", "✅ User created successfully!");
                 req.getRequestDispatcher("newuser.jsp").forward(req, resp);
-                resp.sendRedirect("admin.jsp");
                 return;
 
             } else {
