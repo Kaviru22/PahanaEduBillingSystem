@@ -1,25 +1,39 @@
 package com.example.pahanaeduonlinebillingsys;
 
-import java.io.*;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import java.io.IOException;
+import java.sql.*;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
-    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        String username = req.getParameter("username");
-        String password = req.getParameter("password");
+        String username = req.getParameter("username").trim();
+        String password = req.getParameter("password").trim();
 
         if ("admin".equals(username) && "admin123".equals(password)) {
             resp.sendRedirect("admin.jsp");
-
+            return;
         }
-        else {
-            resp.sendRedirect("login.jsp?error=1");
+
+        try (Connection conn = DBConnection.getConnection()) {
+            PreparedStatement ps = conn.prepareStatement(
+                    "SELECT * FROM users WHERE username = ? AND password = ?"
+            );
+            ps.setString(1, username);
+            ps.setString(2, password);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                resp.sendRedirect("user.jsp");
+            } else {
+                resp.sendRedirect("login.jsp?error=1");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            resp.sendRedirect("login.jsp?error=2");
         }
     }
-
 }
