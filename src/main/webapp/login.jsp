@@ -38,7 +38,6 @@
             <button type="submit" class="btn btn-primary w-100">Login</button>
 
             <div class="mt-3 text-center">
-                <small>Not a user? <a href="signup.jsp">Create New Account</a></small>
             </div>
 
             <%-- Optional error message display --%>
