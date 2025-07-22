@@ -1,13 +1,17 @@
-package com.example.pahanaeduonlinebillingsys;
+package com.example.pahanaeduonlinebillingsys.user.controller;
+
+import com.example.pahanaeduonlinebillingsys.user.dao.UserLoginDAO;
+import com.example.pahanaeduonlinebillingsys.user.model.UserLogin;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
-import java.sql.*;
 
 @WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+public class LoginUser extends HttpServlet {
+    private UserLoginDAO userLoginDAO = new UserLoginDAO();
+
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username").trim();
         String password = req.getParameter("password").trim();
@@ -20,9 +24,9 @@ public class LoginServlet extends HttpServlet {
         }
 
         UserLogin userLogin = new UserLogin(username, password);
-        LoginService loginService = new LoginService();
+        UserLoginDAO userLoginDAO = new UserLoginDAO();
 
-        if (loginService.validateUser(userLogin)) {
+        if (userLoginDAO.validateUser(userLogin)) {
             req.getSession().setAttribute("username", username);
             resp.sendRedirect("user.jsp");
         } else {

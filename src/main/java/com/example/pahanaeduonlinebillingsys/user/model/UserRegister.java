@@ -1,4 +1,4 @@
-package com.example.pahanaeduonlinebillingsys;
+package com.example.pahanaeduonlinebillingsys.user.model;
 
 public class UserRegister extends User {
 

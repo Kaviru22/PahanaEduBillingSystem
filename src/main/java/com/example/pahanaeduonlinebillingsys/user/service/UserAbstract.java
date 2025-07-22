@@ -1,4 +1,6 @@
-package com.example.pahanaeduonlinebillingsys;
+package com.example.pahanaeduonlinebillingsys.user.service;
+
+import com.example.pahanaeduonlinebillingsys.user.model.UserLogin;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.example.pahanaeduonlinebillingsys;
+package com.example.pahanaeduonlinebillingsys.Util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

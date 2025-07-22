@@ -1,10 +1,14 @@
-package com.example.pahanaeduonlinebillingsys;
+package com.example.pahanaeduonlinebillingsys.user.dao;
+
+import com.example.pahanaeduonlinebillingsys.Util.DBConnection;
+import com.example.pahanaeduonlinebillingsys.user.model.UserLogin;
+import com.example.pahanaeduonlinebillingsys.user.service.UserAbstract;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class LoginService extends UserAbstract {
+public class UserLoginDAO extends UserAbstract {
 
     @Override
     public boolean validateUser(UserLogin userLogin) {
