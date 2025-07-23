@@ -11,10 +11,10 @@ class UserLoginServiceTest {
     void testLoginSuccess() {
         UserLoginServer userLoginServer = new UserLoginServer();
 
-        UserLogin userLogin = new UserLogin("user", "user123");
+        UserLogin userLogin = new UserLogin("test", "pass123");
         String result = userLoginServer.login(userLogin.getUsername(), userLogin.getPassword());
 
-        assertSame("Login Success", "Login Success");
+        assertSame("Login Success", "Login Success", "User should login successfully");
         System.out.println("Test Login Passed :" + result);
     }
 
@@ -25,7 +25,7 @@ class UserLoginServiceTest {
         UserLogin userLogin = new UserLogin("","user123");
         String result = userLoginServer.login(userLogin.getUsername(), userLogin.getPassword());
 
-        assertTrue(result.contains("error"), "UserName Cannot be empty");
+        assertEquals("Username cannot be empty", result);
         System.out.println("Empty UserName Login Test Passed :" +result);
 
     }
@@ -37,7 +37,7 @@ class UserLoginServiceTest {
         UserLogin userLogin = new UserLogin("user","");
         String result = userLoginServer.login(userLogin.getUsername(), userLogin.getPassword());
 
-        assertTrue(result.contains("error"), "Password Cannot be empty");
+        assertEquals("Password cannot be empty", result);
         System.out.println("Empty Password Login Test Passed :" +result);
 
     }
@@ -58,10 +58,10 @@ class UserLoginServiceTest {
     void testInvalidPassword() {
         UserLoginServer userLoginServer = new UserLoginServer();
 
-        UserLogin userLogin = new UserLogin("user","testing");
+        UserLogin userLogin = new UserLogin("testuser1","testing");
         String result = userLoginServer.login(userLogin.getUsername(), userLogin.getPassword());
 
-        assertTrue(result.contains("Invalid Password"), "Invalid Password");
+        assertEquals("Invalid username or password", result, "Should fail with Invalid Password");
         System.out.println("Invalid Password Login Test Passed :" +result);
 
     }

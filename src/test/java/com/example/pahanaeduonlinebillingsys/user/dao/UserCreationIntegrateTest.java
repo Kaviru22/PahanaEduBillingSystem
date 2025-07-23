@@ -46,7 +46,7 @@ class UserCreationIntegrateTest {
         stmt.setString(1, "testuser1");
 
         ResultSet rs = stmt.executeQuery();
-        assertTrue(rs.next(), "User should exist in database");
+        assertEquals(rs.next(), "❌ User already exists", "User should exist in database");
 
     }
 
