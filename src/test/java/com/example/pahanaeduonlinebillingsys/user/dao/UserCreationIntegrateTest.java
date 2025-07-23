@@ -41,13 +41,24 @@ class UserCreationIntegrateTest {
         assertTrue(result.contains("success"), "User creation should succeed");
         System.out.println("Integration Test Passed: " + result);
 
+
+    }
+
+    @Test
+    void testExistsUser() throws Exception {
+
+        UserRegister userRegister = new UserRegister("testuser1", "Test", "Integration",
+                "integ@example.com", "pass123", "pass123");
+        String result = userCreateService.registerUser(userRegister);
+
         PreparedStatement stmt = connection.prepareStatement(
                 "SELECT * FROM users WHERE username = ?");
         stmt.setString(1, "testuser1");
-
         ResultSet rs = stmt.executeQuery();
-        assertEquals(rs.next(), "❌ User already exists", "User should exist in database");
 
+        System.out.println("Result from registerUser(): " + result);
+        assertTrue(rs.next(), "User should exist in the database");
+        System.out.println("✅ User Exist Test Passed: " + userRegister.getUsername() +result);
     }
 
     /*@AfterEach
