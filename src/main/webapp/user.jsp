@@ -8,10 +8,46 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Admin</title>
+    <title>User Dashboard - Pahana Edu Book Shop</title>
 </head>
 <body>
 <h1 class="text-center mt-5">Welcome User</h1>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Welcome, User - Pahana Edu Book Shop</h2>
+
+    <div class="list-group">
+        <a href="newuser.jsp" class="list-group-item list-group-item-action">
+             Add New Customer
+        </a>
+        <a href="updateUser.jsp" class="list-group-item list-group-item-action">
+             Update Existing Customer
+        </a>
+        <a href="deleteUser.jsp" class="list-group-item list-group-item-action">
+             Delete Customer
+        </a>
+        <a href="deleteUser.jsp" class="list-group-item list-group-item-action">
+             Add New Items
+        </a>
+        <a href="deleteUser.jsp" class="list-group-item list-group-item-action">
+             Update Items
+        </a>
+        <a href="deleteUser.jsp" class="list-group-item list-group-item-action">
+             View Items
+        </a>
+        <a href="deleteUser.jsp" class="list-group-item list-group-item-action">
+             Delete Items
+        </a>
+        <a href="deleteUser.jsp" class="list-group-item list-group-item-action">
+             Generate Bills
+        </a>
+        <a href="deleteUser.jsp" class="list-group-item list-group-item-action">
+             Help Menu
+        </a>
+        <a href="login.jsp" class="list-group-item list-group-item-action text-danger">
+            🔒 Logout
+        </a>
+    </div>
+</div>
 </body>
 </html>
 
