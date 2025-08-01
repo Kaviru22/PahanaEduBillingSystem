@@ -16,8 +16,11 @@
     <h2 class="text-center mb-4">Welcome, User - Pahana Edu Book Shop</h2>
 
     <div class="list-group">
-        <a href="newuser.jsp" class="list-group-item list-group-item-action">
+        <a href="newcustomer.jsp" class="list-group-item list-group-item-action">
              Add New Customer
+        </a>
+        <a href="newuser.jsp" class="list-group-item list-group-item-action">
+            View Customer Details
         </a>
         <a href="updateUser.jsp" class="list-group-item list-group-item-action">
              Update Existing Customer
