@@ -11,7 +11,7 @@ public class CustomerCreateService {
     public String registerCustomer(CustomerRegister customerRegister) {
         try {
 
-            int accNo = customerRegister.getAccNo();
+            String accNo = customerRegister.getAccNo();
             if (customerDAO.customerExists(accNo)) {
                 return "❌ Customer already exists!";
             }

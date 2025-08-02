@@ -19,7 +19,7 @@
         <a href="newcustomer.jsp" class="list-group-item list-group-item-action">
              Add New Customer
         </a>
-        <a href="newuser.jsp" class="list-group-item list-group-item-action">
+        <a href="viewcustomer.jsp" class="list-group-item list-group-item-action">
             View Customer Details
         </a>
         <a href="updateUser.jsp" class="list-group-item list-group-item-action">

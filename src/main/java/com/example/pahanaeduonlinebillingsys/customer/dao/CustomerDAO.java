@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 
 public class CustomerDAO {
 
-    public boolean customerExists(int accno) throws Exception {
+    public boolean customerExists(String accno) throws Exception {
         Connection conn = DBConnection.getConnection();
         String query = "SELECT * FROM customers WHERE accno = ?";
         PreparedStatement ps = conn.prepareStatement(query);
@@ -24,7 +24,7 @@ public class CustomerDAO {
         Connection conn = DBConnection.getConnection();
         String query = "INSERT INTO customers (accno, fname, lname, address, mobileno) VALUES (?, ?, ?, ?, ?)";
         PreparedStatement ps = conn.prepareStatement(query);
-        ps.setString(1, String.valueOf(customerRegister.getAccNo()));
+        ps.setString(1, customerRegister.getAccNo());
         ps.setString(2, customerRegister.getFirstName());
         ps.setString(3, customerRegister.getLastName());
         ps.setString(4, customerRegister.getAddress());
