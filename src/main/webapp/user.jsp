@@ -31,7 +31,7 @@
         <a href="additems.jsp" class="list-group-item list-group-item-action">
              Add New Items
         </a>
-        <a href="deleteUser.jsp" class="list-group-item list-group-item-action">
+        <a href="UpdateItem.jsp" class="list-group-item list-group-item-action">
              Update Items
         </a>
         <a href="deleteUser.jsp" class="list-group-item list-group-item-action">
