@@ -16,7 +16,7 @@ public class NewCustomer extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        int accno = Integer.parseInt(req.getParameter("accnumber").trim());
+        String accno = req.getParameter("accnumber").trim();
         String firstname = req.getParameter("firstname").trim();
         String lastname = req.getParameter("lastname").trim();
         String address = req.getParameter("address").trim();
