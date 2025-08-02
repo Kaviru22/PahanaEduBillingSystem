@@ -28,7 +28,7 @@
         <a href="DeleteCustomer.jsp" class="list-group-item list-group-item-action">
              Delete Customer
         </a>
-        <a href="deleteUser.jsp" class="list-group-item list-group-item-action">
+        <a href="additems.jsp" class="list-group-item list-group-item-action">
              Add New Items
         </a>
         <a href="deleteUser.jsp" class="list-group-item list-group-item-action">
