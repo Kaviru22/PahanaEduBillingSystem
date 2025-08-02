@@ -8,8 +8,8 @@ public class CustomerService {
 
     private CustomerViewDAO customerViewDAO = new CustomerViewDAO();
 
-    public CustomerRegister getCustomerByAccno(String accnumber) {
-        return customerViewDAO.getCustomerByAccno(accnumber);
+    public CustomerRegister getCustomerByAccno(String accno) {
+        return customerViewDAO.getCustomerByAccno(accno);
     }
 
 }

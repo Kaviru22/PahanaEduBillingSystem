@@ -20,7 +20,7 @@
         <h3 class="text-center mb-3">Search Customer</h3>
 
         <!-- Search form -->
-        <form action="viewcustomer" method="get">
+        <form action="ViewCustomer" method="get">
             <div class="mb-3">
                 <label for="customeraccno" class="form-label">Enter Acc No:</label>
                 <input type="number" class="form-control" id="customeraccno" name="customeraccno" required>

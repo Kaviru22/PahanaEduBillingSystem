@@ -37,7 +37,7 @@
         <form action="newcustomer" method="post">
             <div class="mb-3">
                 <label for="accnumber" class="form-label">Account No:</label>
-                <input type="number" class="form-control" id="accnumber" name="accnumber" required>
+                <input type="text" class="form-control" id="accnumber" name="accnumber" required>
             </div>
 
             <div class="mb-3">

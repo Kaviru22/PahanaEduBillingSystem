@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.example.pahanaeduonlinebillingsys.user.model.User" %>
 <%@ page import="java.util.*" %>
+<%@ page import="com.example.pahanaeduonlinebillingsys.customer.model.CustomerRegister" %>
 <html>
 <head>
     <title>Edit User</title>
@@ -18,10 +19,10 @@
 <div class="container mt-5">
     <div class="card shadow p-4 mx-auto" style="max-width: 500px;">
 
-        <h3 class="text-center mb-3">Search for User</h3>
+        <h3 class="text-center mb-3">Update Customer Details</h3>
 
         <!-- Search form -->
-        <form action="updateCustomer" method="get">
+        <form action="UpdateCustomer" method="get">
             <div class="mb-3">
                 <label for="accnoSearch" class="form-label">Enter Account No:</label>
                 <input type="text" class="form-control" id="accnoSearch" name="accno" required>
@@ -30,36 +31,36 @@
         </form>
 
         <%
-            User user = (User) request.getAttribute("user");
+            CustomerRegister customer = (CustomerRegister) request.getAttribute("customer");
             String message = (String) request.getAttribute("message");
             if (message != null) {
         %>
         <div class="alert alert-info mt-3"><%= message %></div>
         <% } %>
 
-        <% if (user != null) { %>
-        <form action="updateCustomer" method="post" class="mt-4">
-            <input type="hidden" name="originalAccno" value="<%= user.getUsername() %>">
+        <% if (customer != null) { %>
+        <form action="UpdateCustomer" method="post" class="mt-4">
+            <input type="hidden" name="originalAccno" value="<%= customer.getAccNo() %>">
 
             <div class="mb-3">
                 <label class="form-label">Acc No:</label>
-                <input type="text" class="form-control" name="username" value="<%= user.getUsername() %>" required>
+                <input type="text" class="form-control" name="accno" value="<%= customer.getAccNo() %>" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">First Name:</label>
-                <input type="text" class="form-control" name="firstname" value="<%= user.getFirstName() %>" required>
+                <input type="text" class="form-control" name="fname" value="<%= customer.getFirstName() %>" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">Last Name:</label>
-                <input type="text" class="form-control" name="lastname" value="<%= user.getLastName() %>" required>
+                <input type="text" class="form-control" name="lname" value="<%= customer.getLastName() %>" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">Address:</label>
-                <input type="email" class="form-control" name="email" value="<%= user.getEmail() %>" required>
+                <input type="text" class="form-control" name="address" value="<%= customer.getAddress() %>" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">Mobile No:</label>
-                <input type="password" class="form-control" name="password" value="<%= user.getPassword() %>" required>
+                <input type="number" class="form-control" name="mobileno" value="<%= customer.getMobileNo() %>" required>
             </div>
 
             <button type="submit" class="btn btn-primary w-100">Update</button>
