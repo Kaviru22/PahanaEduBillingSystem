@@ -2,7 +2,6 @@ package com.example.pahanaeduonlinebillingsys.customer.dao;
 
 import com.example.pahanaeduonlinebillingsys.Util.DBConnection;
 import com.example.pahanaeduonlinebillingsys.customer.model.CustomerRegister;
-import com.example.pahanaeduonlinebillingsys.user.model.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -34,7 +34,7 @@
         <a href="UpdateItem.jsp" class="list-group-item list-group-item-action">
              Update Items
         </a>
-        <a href="deleteUser.jsp" class="list-group-item list-group-item-action">
+        <a href="ViewItem.jsp" class="list-group-item list-group-item-action">
              View Items
         </a>
         <a href="deleteUser.jsp" class="list-group-item list-group-item-action">
