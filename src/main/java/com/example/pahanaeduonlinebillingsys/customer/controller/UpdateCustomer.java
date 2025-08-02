@@ -2,8 +2,6 @@ package com.example.pahanaeduonlinebillingsys.customer.controller;
 
 import com.example.pahanaeduonlinebillingsys.customer.model.CustomerRegister;
 import com.example.pahanaeduonlinebillingsys.customer.service.CustomerUpdateService;
-import com.example.pahanaeduonlinebillingsys.user.model.User;
-import com.example.pahanaeduonlinebillingsys.user.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
