@@ -36,18 +36,18 @@
 
         <form action="newcustomer" method="post">
             <div class="mb-3">
-                <label for="accnumber" class="form-label">Account No:</label>
-                <input type="text" class="form-control" id="accnumber" name="accnumber" required>
+                <label for="accno" class="form-label">Account No:</label>
+                <input type="text" class="form-control" id="accno" name="accno" required>
             </div>
 
             <div class="mb-3">
-                <label for="firstname" class="form-label">First Name:</label>
-                <input type="text" class="form-control" id="firstname" name="firstname" required>
+                <label for="fname" class="form-label">First Name:</label>
+                <input type="text" class="form-control" id="fname" name="fname" required>
             </div>
 
             <div class="mb-3">
-                <label for="lastname" class="form-label">Last Name:</label>
-                <input type="text" class="form-control" id="lastname" name="lastname" required>
+                <label for="lname" class="form-label">Last Name:</label>
+                <input type="text" class="form-control" id="lname" name="lname" required>
             </div>
 
             <div class="mb-3">
@@ -57,7 +57,7 @@
 
             <div class="mb-3">
                 <label for="mobileno" class="form-label">Mobile No:</label>
-                <input type="number" class="form-control" id="mobileno" name="mobileno" required>
+                <input type="text" class="form-control" id="mobileno" name="mobileno" required>
             </div>
 
             <button type="submit" class="btn btn-success w-100">Create</button>
