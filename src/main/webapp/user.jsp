@@ -40,7 +40,7 @@
         <a href="DeleteItem.jsp" class="list-group-item list-group-item-action">
              Delete Items
         </a>
-        <a href="deleteUser.jsp" class="list-group-item list-group-item-action">
+        <a href="billing.jsp" class="list-group-item list-group-item-action">
              Generate Bills
         </a>
         <a href="deleteUser.jsp" class="list-group-item list-group-item-action">
