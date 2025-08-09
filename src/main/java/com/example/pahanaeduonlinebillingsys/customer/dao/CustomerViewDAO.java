@@ -20,8 +20,8 @@ public class CustomerViewDAO {
                 System.out.println("Customer found!");
                 customerRegister = new CustomerRegister(
                         rs.getString("accno"),
-                        rs.getString("firstname"),
-                        rs.getString("lastname"),
+                        rs.getString("fname"),
+                        rs.getString("lname"),
                         rs.getString("address"),
                         rs.getString("mobileno")
                 );

@@ -22,8 +22,8 @@
         <!-- Search form -->
         <form action="ViewCustomer" method="get">
             <div class="mb-3">
-                <label for="customeraccno" class="form-label">Enter Acc No:</label>
-                <input type="number" class="form-control" id="customeraccno" name="customeraccno" required>
+                <label for="accno" class="form-label">Enter Acc No:</label>
+                <input type="text" class="form-control" id="accno" name="accno" required>
             </div>
             <button type="submit" class="btn btn-success w-100">Search</button>
         </form>
