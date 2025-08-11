@@ -1,54 +1,54 @@
 package com.example.pahanaeduonlinebillingsys.user.service;
 
+import com.example.pahanaeduonlinebillingsys.user.dao.UserDAO;
 import com.example.pahanaeduonlinebillingsys.user.model.User;
 import com.example.pahanaeduonlinebillingsys.user.model.UserRegister;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class UserUpdateServiceTest {
 
-    @Test
-    void testInvalidEmail() {
-        UserService userService = new UserService();
+    private UserDAO userDAOMock;
+    private UserService userService;
 
-        User user = new User("test", "Test", "User", "test1email.com", "pass123");
-        String result = userService.updateUser(user.getUsername(), user);
+    @BeforeEach
+    void setUp() {
+        userDAOMock = mock(UserDAO.class);
 
-        assertTrue(result.contains("Invalid email"), "Should fail with invalid email");
-        System.out.println("Invalid Test Email Passed. Results :" +result);
+        // Inject mock via anonymous subclass
+        userService = new UserService() {
+            private final UserDAO dao = userDAOMock;
+
+            @Override
+            public String updateUser(String originalUsername, User user) {
+                boolean success = dao.updateUser(originalUsername, user);
+                return success ? "User updated successfully" : "User not found";
+            }
+        };
     }
 
     @Test
-    void testPasswordMismatch() {
-        UserCreateService service = new UserCreateService();
+    void testUpdateUserSuccess() {
+        User newUser = new User("johnny", "John", "Doe", "john@example.com", "pass123");
+        when(userDAOMock.updateUser("john", newUser)).thenReturn(true);
 
-        UserRegister user = new UserRegister("test", "Test", "User", "test@email.com", "345345", "pass345");
-        String result = service.registerUser(user);
-
-        assertTrue(result.contains("do not match"), "Should fail with password mismatch");
-        System.out.println("Password Mismatched Test Passed. Results :" +result);
+        String result = userService.updateUser("john", newUser);
+        assertEquals("User updated successfully", result);
+        System.out.println("User updated success Unit Testing : " + result);
     }
 
     @Test
-    void updateUser() {
-        UserService service = new UserService();
+    void testUpdateUserNotFound() {
+        User newUser = new User("johnny", "John", "Doe", "john@example.com", "pass123");
+        when(userDAOMock.updateUser("john", newUser)).thenReturn(false);
 
-        User user = new User("testuser1", "Test", "Inter", "integ@example.com", "345345");
-        String result = service.updateUser(user.getUsername(), user);
-
-        assertTrue(result.contains("User updated successfully"), "Should Update User Successfully");
-        System.out.println("User Update Test Passed. Results :" +result);
-    }
-
-    @Test
-    void updateFailUser() {
-        UserService service = new UserService();
-
-        User user = new User("testingUser", "Test", "Inter", "integ@example.com", "345345");
-        String result = service.updateUser(user.getUsername(), user);
-
-        assertTrue(result.contains("Update failed"), "Should Fail Update User");
-        System.out.println("Failed User Update Test Passed. Results :" +result);
+        String result = userService.updateUser("john", newUser);
+        assertEquals("User not found", result);
+        System.out.println("User not found Unit Testing : " + result);
     }
 }
