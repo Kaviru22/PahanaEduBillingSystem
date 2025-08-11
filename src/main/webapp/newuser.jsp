@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: kaviruMendis
-  Date: 7/10/2025
-  Time: 3:23 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -16,6 +9,27 @@
 
     <!-- Your external CSS -->
     <link rel="stylesheet" href="css/styles.css">
+
+    <script>
+        // Clear form fields
+        function clearForm() {
+            const confirmClear = confirm("Do you want to clear the entered details?");
+            if (confirmClear) {
+                document.getElementById("newUserForm").reset();
+                alert("Details cleared successfully.");
+            }
+        }
+
+        // Back to Home with confirmation to clear
+        function backToHome() {
+            const confirmPage = confirm("Do you want to back to main page?");
+            if (confirmPage) {
+                document.getElementById("newUserForm").reset();
+                window.location.href = "user.jsp"; // redirect home
+            }
+
+        }
+    </script>
 </head>
 <body class="bg-light">
 
@@ -34,7 +48,7 @@
         </div>
         <% } %>
 
-        <form action="newuser" method="post">
+        <form id="newUserForm" action="newuser" method="post">
             <div class="mb-3">
                 <label for="username" class="form-label">Username:</label>
                 <input type="text" class="form-control" id="username" name="username" required>
@@ -65,7 +79,9 @@
                 <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
             </div>
 
-            <button type="submit" class="btn btn-success w-100">Sign Up</button>
+            <button type="submit" class="btn btn-success w-100 mb-2">Sign Up</button>
+            <button type="button" class="btn btn-warning w-100 mb-2" onclick="clearForm()">Clear Form</button>
+            <button type="button" class="btn btn-primary w-100" onclick="backToHome()">Back to Home</button>
         </form>
     </div>
 </div>
