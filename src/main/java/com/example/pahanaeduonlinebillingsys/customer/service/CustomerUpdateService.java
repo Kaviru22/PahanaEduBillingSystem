@@ -8,6 +8,7 @@ public class CustomerUpdateService {
 
     private CustomerUpdateDAO customerDAO = new CustomerUpdateDAO();
 
+
     public CustomerRegister getCustomerByAccNo(String accno) {
         return customerDAO.getCustomerByAccNo(accno);
     }
