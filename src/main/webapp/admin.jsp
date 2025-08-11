@@ -21,16 +21,25 @@
 
     <div class="list-group">
         <a href="newuser.jsp" class="list-group-item list-group-item-action">
-            ➕ Add New User
+            Add New User
         </a>
         <a href="updateUser.jsp" class="list-group-item list-group-item-action">
-            ✏️ Edit Existing User
+            Edit Existing User
         </a>
         <a href="deleteUser.jsp" class="list-group-item list-group-item-action">
-            ❌ Delete a User
+            Delete a User
+        </a>
+        <a href="additems.jsp" class="list-group-item list-group-item-action">
+            Add New Items
+        </a>
+        <a href="UpdateItem.jsp" class="list-group-item list-group-item-action">
+            Update Items
+        </a>
+        <a href="DeleteItem.jsp" class="list-group-item list-group-item-action">
+            Delete Items
         </a>
         <a href="login.jsp" class="list-group-item list-group-item-action text-danger">
-            🔒 Logout
+            Logout
         </a>
     </div>
 </div>

@@ -19,3 +19,18 @@ body {
 h3 {
     font-weight: bold;
 }
+
+@media print {
+    body * {
+        visibility: hidden; /* hide everything */
+    }
+    #receipt, #receipt * {
+        visibility: visible; /* show only the receipt */
+    }
+    #receipt {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+}

@@ -9,6 +9,8 @@
 <html>
 <head>
     <title>User Dashboard - Pahana Edu Book Shop</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 <h1 class="text-center mt-5">Welcome User</h1>
@@ -28,26 +30,17 @@
         <a href="DeleteCustomer.jsp" class="list-group-item list-group-item-action">
              Delete Customer
         </a>
-        <a href="additems.jsp" class="list-group-item list-group-item-action">
-             Add New Items
-        </a>
-        <a href="UpdateItem.jsp" class="list-group-item list-group-item-action">
-             Update Items
-        </a>
         <a href="ViewItem.jsp" class="list-group-item list-group-item-action">
              View Items
-        </a>
-        <a href="DeleteItem.jsp" class="list-group-item list-group-item-action">
-             Delete Items
         </a>
         <a href="billing.jsp" class="list-group-item list-group-item-action">
              Generate Bills
         </a>
-        <a href="deleteUser.jsp" class="list-group-item list-group-item-action">
+        <a href="helpsection.jsp" class="list-group-item list-group-item-action">
              Help Menu
         </a>
         <a href="login.jsp" class="list-group-item list-group-item-action text-danger">
-            🔒 Logout
+             Logout
         </a>
     </div>
 </div>
