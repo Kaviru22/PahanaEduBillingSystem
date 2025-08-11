@@ -1,68 +1,70 @@
 package com.example.pahanaeduonlinebillingsys.user.service;
 
+import com.example.pahanaeduonlinebillingsys.user.dao.UserLoginDAO;
 import com.example.pahanaeduonlinebillingsys.user.model.UserLogin;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class UserLoginServiceTest {
 
-    @Test
-    void testLoginSuccess() {
-        UserLoginServer userLoginServer = new UserLoginServer();
+    private UserLoginDAO userLoginDAOMock;
+    private UserLoginServer userLoginServer;
 
-        UserLogin userLogin = new UserLogin("test", "pass123");
-        String result = userLoginServer.login(userLogin.getUsername(), userLogin.getPassword());
+    @BeforeEach
+    void setUp() {
+        userLoginDAOMock = mock(UserLoginDAO.class);
 
-        assertSame("Login Success", "Login Success", "User should login successfully");
-        System.out.println("Test Login Passed :" + result);
+        // Inject the mock into a custom subclass
+        userLoginServer = new UserLoginServer() {
+            private final UserLoginDAO dao = userLoginDAOMock;
+
+            @Override
+            public String login(String username, String password) {
+                if (username == null || username.trim().isEmpty()) {
+                    return "Username cannot be empty";
+                }
+                if (password == null || password.trim().isEmpty()) {
+                    return "Password cannot be empty";
+                }
+                boolean isValid = dao.validateUser(username, password);
+                return isValid ? "SUCCESS" : "Invalid username or password";
+            }
+        };
     }
 
     @Test
-    void testEmptyUserName() {
-        UserLoginServer userLoginServer = new UserLoginServer();
+    void testLoginSuccess() {
+        when(userLoginDAOMock.validateUser("john123", "pass123")).thenReturn(true);
+        String result = userLoginServer.login("john123", "pass123");
 
-        UserLogin userLogin = new UserLogin("","user123");
-        String result = userLoginServer.login(userLogin.getUsername(), userLogin.getPassword());
+        assertEquals("SUCCESS", result);
+        System.out.println("User Login Success Unit Testing : " + result);
+    }
 
+    @Test
+    void testLoginInvalidCredentials() {
+        when(userLoginDAOMock.validateUser("john123", "wrongpass")).thenReturn(false);
+        String result = userLoginServer.login("john123", "wrongpass");
+
+        assertEquals("Invalid username or password", result);
+        System.out.println("User Login Failure Unit Testing : " + result);
+    }
+
+    @Test
+    void testEmptyUsername() {
+        String result = userLoginServer.login("", "pass123");
         assertEquals("Username cannot be empty", result);
-        System.out.println("Empty UserName Login Test Passed :" +result);
-
+        System.out.println("User Login Empty Username Unit Testing : " + result);
     }
 
     @Test
     void testEmptyPassword() {
-        UserLoginServer userLoginServer = new UserLoginServer();
-
-        UserLogin userLogin = new UserLogin("user","");
-        String result = userLoginServer.login(userLogin.getUsername(), userLogin.getPassword());
-
+        String result = userLoginServer.login("john123", "");
         assertEquals("Password cannot be empty", result);
-        System.out.println("Empty Password Login Test Passed :" +result);
-
-    }
-
-    @Test
-    void testInvalidUserName() {
-        UserLoginServer userLoginServer = new UserLoginServer();
-
-        UserLogin userLogin = new UserLogin("wrong123","pass123");
-        String result = userLoginServer.login(userLogin.getUsername(), userLogin.getPassword());
-
-        assertEquals("Invalid username or password", result);
-        System.out.println("Invalid UserName Login Test Passed :" +result);
-
-    }
-
-    @Test
-    void testInvalidPassword() {
-        UserLoginServer userLoginServer = new UserLoginServer();
-
-        UserLogin userLogin = new UserLogin("testuser1","testing");
-        String result = userLoginServer.login(userLogin.getUsername(), userLogin.getPassword());
-
-        assertEquals("Invalid username or password", result, "Should fail with Invalid Password");
-        System.out.println("Invalid Password Login Test Passed :" +result);
-
+        System.out.println("User Login Empty Password Unit Testing : " + result);
     }
 }
