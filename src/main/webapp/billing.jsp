@@ -3,13 +3,6 @@
   User: kaviruMendis
   Date: 8/9/2025
   Time: 5:46 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%--
-  Created by IntelliJ IDEA.
-  User: kaviruMendis
-  Date: 8/9/2025
-  Time: 5:46 PM
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.example.pahanaeduonlinebillingsys.customer.model.CustomerRegister" %>
@@ -21,6 +14,25 @@
 <head>
     <title>Billing</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        /* Print only the receipt section */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #receipt, #receipt * {
+                visibility: visible;
+            }
+            #receipt {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body class="bg-light">
 
@@ -217,7 +229,6 @@
 
         // Item No input: for demo, we skip backend fetch, just clear price fields
         row.querySelector('input[name="itemno"]').addEventListener('change', function() {
-            // Clear item name, unit price, total price for now
             const nameInput = row.querySelector('input[readonly].form-control:not([name])');
             const unitPriceInput = row.querySelector('.unit-price');
             const totalPriceInput = row.querySelector('.total-price');
@@ -225,7 +236,6 @@
             unitPriceInput.value = "";
             totalPriceInput.value = "";
             updateTotals();
-            alert('Please implement backend item lookup to auto-fill name and price.');
         });
     }
 
@@ -237,9 +247,7 @@
 
     // Pay Bill button logic
     document.getElementById('payBtn').addEventListener('click', function () {
-        // Submit form via POST but add a hidden field "action=pay"
         let form = document.getElementById('billingForm');
-        // Create or update hidden input for action
         let actionInput = document.getElementById('actionInput');
         if (!actionInput) {
             actionInput = document.createElement('input');
@@ -252,26 +260,23 @@
         form.submit();
     });
 
-    // Print receipt function
+    // Print receipt function (prints only receipt section)
     function printReceipt() {
-        // Check if billId exists
         let billId = document.getElementById('billId').value;
         if (!billId) {
             alert("Please calculate and pay the bill first.");
             return;
         }
 
-        const accNo = document.querySelector('input[name="accno"]').value;
+        const accNo = '<%= customer != null ? customer.getAccNo().replace("'", "\\'") : "" %>';
         const name = '<%= customer != null ? customer.getFirstName().replace("'", "\\'") + " " + customer.getLastName().replace("'", "\\'") : "" %>';
         const mobile = '<%= customer != null ? customer.getMobileNo().replace("'", "\\'") : "" %>';
 
-        // Fill receipt header info
         document.getElementById('receiptBillId').textContent = billId;
         document.getElementById('receiptAccNo').textContent = accNo;
         document.getElementById('receiptName').textContent = name;
         document.getElementById('receiptMobile').textContent = mobile;
 
-        // Fill receipt items
         const receiptItemsBody = document.getElementById('receiptItems');
         receiptItemsBody.innerHTML = '';
 
@@ -297,15 +302,13 @@
 
         document.getElementById('receiptTotalAmount').textContent = totalAmount.toFixed(2);
 
-        // Hide form, show receipt
-        document.getElementById('billingForm').style.display = 'none';
+        // Show receipt for printing
         document.getElementById('receipt').style.display = 'block';
 
-        // Print
+        // Trigger print (CSS will print only receipt)
         window.print();
 
-        // After print, revert back
-        document.getElementById('billingForm').style.display = 'block';
+        // Hide receipt after printing
         document.getElementById('receipt').style.display = 'none';
     }
 </script>
