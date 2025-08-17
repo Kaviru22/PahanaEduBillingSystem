@@ -17,6 +17,32 @@
     <link rel="stylesheet" href="css/styles.css">
 
     <style>
+
+        .bg-light {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+        }
+
+        #search-customer {
+            width: 50%;
+            padding-left: 10%;
+            padding-right: 20%;
+        }
+
+        h3 {
+            font-weight: 700;
+            color: white;
+            padding-left: 10%;
+        }
+
+        #customer-details {
+            border-color: white;
+            background-color: #9E0B0B;
+            color: white;
+            width: 50%;
+            padding-right: 20%;
+        }
+
         /* Print only the receipt section */
         @media print {
             body * {
@@ -33,15 +59,67 @@
             }
         }
     </style>
+
+    <script>
+        function clearForm() {
+            if(confirm("Do you want to clear all entered details?")) {
+                // Reset search form
+                const searchForm = document.getElementById("search-customer");
+                searchForm.reset();
+
+                // Reset billing form
+                const billingForm = document.getElementById("billingForm");
+                billingForm.reset();
+
+                // Remove all dynamic item rows except the first default row
+                const container = document.getElementById('items-container');
+                container.innerHTML = `
+                <div class="row mb-3 item-row" data-itemno="">
+                    <div class="col">
+                        <input type="text" name="itemno" placeholder="Item No" class="form-control" required>
+                    </div>
+                    <div class="col">
+                        <input type="number" name="quantity" placeholder="Quantity" class="form-control qty-input" min="1" required>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Item Name" readonly>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control unit-price" placeholder="Unit Price" readonly>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control total-price" placeholder="Total Price" readonly>
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-danger btn-remove" disabled>Remove</button>
+                    </div>
+                </div>
+            `;
+
+                // Re-attach events to the new row
+                attachEvents(container.querySelector('.item-row'));
+
+                // Reset total amount
+                document.getElementById('totalAmount').textContent = "0.00";
+
+                // Hide receipt if visible
+                document.getElementById('receipt').style.display = 'none';
+
+                alert("All details cleared successfully.");
+            }
+        }
+    </script>
+
 </head>
 <body class="bg-light">
 
 <div class="container mt-5">
 
     <h3>Search Customer by Account No</h3>
-    <form action="billing" method="get" class="mb-4">
+    <form id="search-customer" action="billing" method="get" class="mb-4">
         <input type="text" name="accno" placeholder="Enter Account No" class="form-control" required>
         <button type="submit" class="btn btn-primary mt-2">Search</button>
+
     </form>
 
     <%
@@ -58,7 +136,7 @@
 
     <% if (customer != null) { %>
 
-    <div class="card p-3 mb-4">
+    <div id= "customer-details" class="card p-3 mb-4">
         <h5>Customer Details</h5>
         <p><b>Account No:</b> <%= customer.getAccNo() %></p>
         <p><b>Name:</b> <%= customer.getFirstName() + " " + customer.getLastName() %></p>
@@ -139,6 +217,8 @@
         <button type="submit" class="btn btn-success" id="calculateBtn">Calculate & Save Bill</button>
         <button type="button" class="btn btn-primary" id="payBtn">Pay Bill</button>
         <button type="button" class="btn btn-info" onclick="printReceipt()">Print Bill</button>
+        <button type="button" class="btn btn-warning" onclick="clearForm()">Clear Form</button>
+        <button type="button" class="btn btn-primary" onclick="window.location.href='user.jsp'">Back to Home</button>
     </form>
 
     <!-- Receipt Section - hidden by default -->
