@@ -14,8 +14,11 @@ A Java web-based billing system using JSP, Servlets, and PostgreSQL designed for
 5. Access via `http://localhost:8080/PahanaEduBillingSystem/login.jsp`
 
 ## Branch Structure  
-- `main`: Stable branch  
-- `feature-login`, `feature-billing`, etc.
+- `dev`: Testing branch  
+- `master`, modiiciation branch
+- `test`, unit and integeration testing branch
+- `uat`, end-user testing branch
+- `production`, final project release branch
 
 ## Versioning  
 - `v1.0-init`: Initial setup  
@@ -25,9 +28,9 @@ A Java web-based billing system using JSP, Servlets, and PostgreSQL designed for
 
 ## How to Contribute  
 1. Fork the repo  
-2. Create branch: `git checkout -b feature-new`  
+2. Create branch: `git checkout -b new-branch`  
 3. Commit and push changes  
 4. Open a pull request for review
 
 ## License  
-[Specify your project's license]
+
