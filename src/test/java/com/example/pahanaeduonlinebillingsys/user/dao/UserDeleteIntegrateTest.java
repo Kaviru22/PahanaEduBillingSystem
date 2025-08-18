@@ -20,7 +20,7 @@ class UserDeleteIntegrateTest {
     void testDeleteUserFromDatabase() {
         UserDeleteService service = new UserDeleteService();
 
-        UserDelete userToDelete = new UserDelete("testuser1");
+        UserDelete userToDelete = new UserDelete("testuser");
         String result = service.deleteUser(userToDelete);
 
         assertTrue(result.contains("deleted successfully") || result.contains("not found"));

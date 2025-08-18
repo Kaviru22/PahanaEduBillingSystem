@@ -99,6 +99,15 @@
         <a href="DeleteCustomer.jsp" class="list-group-item list-group-item-action">
             Delete Customer
         </a>
+        <a href="additems.jsp" class="list-group-item list-group-item-action">
+            Add New Items
+        </a>
+        <a href="UpdateItem.jsp" class="list-group-item list-group-item-action">
+            Update Items
+        </a>
+        <a href="DeleteItem.jsp" class="list-group-item list-group-item-action">
+            Delete Items
+        </a>
         <a href="ViewItem.jsp" class="list-group-item list-group-item-action">
             View Items
         </a>

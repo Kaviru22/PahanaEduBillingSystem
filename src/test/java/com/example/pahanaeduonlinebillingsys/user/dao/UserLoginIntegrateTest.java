@@ -21,7 +21,7 @@ class UserLoginIntegrateTest {
         UserLoginServer server = new UserLoginServer();
 
         // Must already exist in DB
-        String result = server.login("testuser1", "pass123");
+        String result = server.login("user3", "1234567");
 
         assertEquals("SUCCESS", result);
         System.out.println("User Login Success Integration Testing : " + result);

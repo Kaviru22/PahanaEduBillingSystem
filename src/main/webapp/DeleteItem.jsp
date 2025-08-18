@@ -109,7 +109,7 @@
             <input type="text" class="form-control" id="itemno" name="itemno" required>
         </div>
         <button type="submit" class="btn btn-danger-custom w-100">Delete</button>
-        <button type="button" class="btn btn-primary-custom w-100" onclick="window.location.href='admin.jsp'">Back to Home</button>
+        <button type="button" class="btn btn-primary-custom w-100" onclick="window.location.href='user.jsp'">Back to Home</button>
     </form>
 </div>
 

@@ -17,7 +17,7 @@ public class UserUpdateIntegrateTest {
     void testUpdateExistingUser() {
         UserService service = new UserService();
 
-        User updatedUser = new User("user3", "John", "Cena", "johnny@example.com", "1234567");
+        User updatedUser = new User("user3", "Tom", "Cena", "johnny@example.com", "1234567");
         String result = service.updateUser("user3", updatedUser);
 
         assertTrue(result.contains("successfully") || result.contains("not found"));

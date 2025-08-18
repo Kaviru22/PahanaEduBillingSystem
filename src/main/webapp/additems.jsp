@@ -95,7 +95,7 @@
             const confirmPage = confirm("Do you want to go back to the main page?");
             if (confirmPage) {
                 document.getElementById("newItemForm").reset();
-                window.location.href = "admin.jsp";
+                window.location.href = "user.jsp";
             }
         }
     </script>
