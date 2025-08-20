@@ -13,10 +13,10 @@ public class CustomerDeleteIntegrateTest {
     @Test
     void testDeleteCustomerSuccessRealDB() {
         // Use an accno that exists in your DB for safe deletion test
-        CustomerDelete custDel = new CustomerDelete("12121212");
+        CustomerDelete custDel = new CustomerDelete("999999999");
 
         String result = customerDeleteService.deleteCustomer(custDel);
-        assertEquals("✅ Customer '12121212' deleted successfully.", result);
+        assertEquals("✅ Customer '999999999' deleted successfully.", result);
         System.out.println("Integration test Customer Delete Test :" + result );
     }
 

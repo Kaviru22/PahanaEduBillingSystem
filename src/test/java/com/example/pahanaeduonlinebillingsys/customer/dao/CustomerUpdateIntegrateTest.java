@@ -12,7 +12,7 @@ public class CustomerUpdateIntegrateTest {
 
     @Test
     void testUpdateCustomerSuccessRealDB() {
-        String originalAccNo = "12121212"; // use existing valid accno in your DB
+        String originalAccNo = "12345"; // use existing valid accno in your DB
         CustomerRegister updatedCustomer = new CustomerRegister(originalAccNo, "UpdatedFast", "UpdatedLast", "Updated Address", "0700000000");
 
         String result = customerUpdateService.updateCustomer(originalAccNo, updatedCustomer);
